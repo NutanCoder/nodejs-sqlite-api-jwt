@@ -22,4 +22,5 @@ This project sets up an **in-memory SQLite database** using Node.js and the `sql
 git clone https://github.com/NutanCoder/nodejs-sqlite-api-jwt.git
 cd nodejs-sqlite-api-jwt
 npm install
+npm run start
 ```
