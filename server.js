@@ -16,6 +16,11 @@ app.use("/api/books", bookRoutes);
 // 🔥 Swagger route
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
+app.get("/swagger.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
+
 const PORT = 3000;
 app.listen(PORT, () =>
   console.log(

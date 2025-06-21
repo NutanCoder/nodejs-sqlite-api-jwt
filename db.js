@@ -1,7 +1,7 @@
 // db.js
 const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database(":memory:");
+const db = new sqlite3.Database("./data/database.sqlite");
 
 db.serialize(() => {
   db.run(`
@@ -22,6 +22,15 @@ db.serialize(() => {
     FOREIGN KEY(user_id) REFERENCES users(id)
   )
 `);
+  db.run(`
+    CREATE TABLE IF NOT EXISTS refresh_tokens (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      token TEXT UNIQUE,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    )
+  `);
 });
 
 module.exports = db;
